@@ -156,7 +156,7 @@
             <span id="duration"></span>
         </div>
         <audio id="music-player" autoplay>
-            <source src="nenhuma.mp3" type="audio/mpeg">
+            <source src="05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO K.mp3" type="audio/mpeg">
             Seu navegador não suporta áudio.
         </audio>
     </div>    
@@ -200,7 +200,7 @@
     <script>
         window.onload = function() {
             if (sessionStorage.getItem("playMusic") === "true") {
-                let audio = new Audio("media/05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO K.mp3");
+                let audio = new Audio("media/nenhuma tá duplicado.mp3");
                 audio.loop = true;
                 audio.play();
                 sessionStorage.setItem("musicPlaying", "true");
