@@ -54,12 +54,12 @@
         sessionStorage.setItem("playMusic", "true");
 
         // Criando um áudio global e armazenando no sessionStorage
-        let audio = new Audio("media/estetica.mp3");
+        let audio = new Audio("media/zoi.mp3");
         audio.loop = true;
         audio.play();
         sessionStorage.setItem("musicInstance", "playing");
 
-        window.location.href = "profile.html";
+        window.location.href = "profile";
         }
     </script>
     <script>
@@ -97,7 +97,7 @@
 
         // Se a música ainda não estiver tocando, cria e inicia a reprodução
         if (!window.audioInstance) {
-            window.audioInstance = new Audio("media/estetica.mp3");
+            window.audioInstance = new Audio("media/zoi.mp3");
             window.audioInstance.loop = true;
             window.audioInstance.autoplay = true;
             window.audioInstance.volume = 1.0;
@@ -105,14 +105,14 @@
             window.audioInstance.play().then(() => {
                 sessionStorage.setItem("musicPlaying", "true");
                 setTimeout(() => {
-                    window.location.href = "profile.html";
+                    window.location.href = "profile";
                 }, 500);
             }).catch(() => {
                 document.addEventListener("click", () => {
                     window.audioInstance.play();
                     sessionStorage.setItem("musicPlaying", "true");
                     setTimeout(() => {
-                        window.location.href = "profile.html";
+                        window.location.href = "profile";
                     }, 500);
                 }, { once: true });
             });
@@ -122,7 +122,7 @@
                 sessionStorage.setItem("keepMusic", "true");
             };
         } else {
-            window.location.href = "profile.html";
+            window.location.href = "profile";
         }
     }
 </script>
