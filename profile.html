@@ -113,7 +113,6 @@
             </div>
         </div>
     </div>
-    
     <script>
         window.onload = function() {
             if (sessionStorage.getItem("playMusic") === "true") {
@@ -122,11 +121,9 @@
                 audio.play();
                 sessionStorage.setItem("musicPlaying", "true");
             }
-            // Esconder "profile.html" da URL
             window.history.pushState({}, "", "/");
         };
-
-        const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+    const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
         let titleIndex = 0;
         
         function changeTitle() {
@@ -154,10 +151,5 @@
         
         changeTitle();
     </script>
-<script>
-    window.onload = function() {
-        setTimeout(() => { window.history.pushState({}, "", "/"); }, 100);
-    };
-</script>
 </body>
 </html>
