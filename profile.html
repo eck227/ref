@@ -151,5 +151,17 @@
         
         changeTitle();
     </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".card").forEach(card => {
+            card.addEventListener("click", function () {
+                let url = this.getAttribute("data-url");
+                if (url) {
+                    window.open(url, "_blank");
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
