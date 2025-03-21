@@ -122,9 +122,40 @@
                 audio.play();
                 sessionStorage.setItem("musicPlaying", "true");
             }
-            // Esconder "profile.html" da URL
-            setTimeout(() => { window.history.pushState({}, "", "/"); }, 100);
         };
+
+        const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+        let titleIndex = 0;
+        
+        function changeTitle() {
+            let currentTitle = titles[titleIndex];
+            let tempTitle = "";
+            let index = 0;
+            
+            function typeEffect() {
+                if (index < currentTitle.length) {
+                    tempTitle += currentTitle[index];
+                    document.title = tempTitle;
+                    index++;
+                    setTimeout(typeEffect, 150);
+                } else {
+                    setTimeout(() => {
+                        titleIndex = (titleIndex + 1) % titles.length;
+                        changeTitle();
+                    }, 2000);
+                }
+            }
+            
+            document.title = "";
+            typeEffect();
+        }
+        
+        changeTitle();
     </script>
+<script>
+    window.onload = function() {
+        setTimeout(() => { window.history.pushState({}, "", "/"); }, 100);
+    };
+</script>
 </body>
 </html>
