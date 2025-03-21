@@ -123,7 +123,7 @@
                 sessionStorage.setItem("musicPlaying", "true");
             }
             // Esconder "profile.html" da URL
-            window.history.pushState({}, "", "/");
+            setTimeout(() => { window.history.pushState({}, "", "/"); }, 100);
         };
     </script>
 </body>
