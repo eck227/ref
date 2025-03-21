@@ -145,35 +145,44 @@
         <button id="next">⏭️</button>
         <span id="track-name">Carregando...</span>
     </div>
+
     <audio id="audio" loop>
         <source src="media/comedinha.mp3" type="audio/mp3">
     </audio>
 
     <script>
-        // Música que toca automaticamente quando a página é carregada
+        // Variáveis da música de fundo que toca automaticamente
         let audioProfile = new Audio("media/comedinha.mp3");
         audioProfile.loop = true;
-        audioProfile.play();
-        sessionStorage.setItem("profileMusicPlaying", "true");
+        
+        // Inicia a música de fundo automaticamente quando a página carrega
+        window.onload = function() {
+            audioProfile.play();
+            sessionStorage.setItem("profileMusicPlaying", "true");  // Garantir que a música esteja tocando
+        };
 
-        // Música de fundo controlada pelo botão
+        // Controle da música que pode ser pausada/reiniciada
         const audio = document.getElementById("audio");
         const playPauseButton = document.getElementById("play-pause");
         const prevButton = document.getElementById("prev");
         const nextButton = document.getElementById("next");
         const trackName = document.getElementById("track-name");
 
-        let tracks = ["media/comedinha.mp3", "media/another-song.mp3"];  // Adicione outras músicas aqui
+        let tracks = ["media/comedinha.mp3", "media/another-song.mp3"];  // Lista de músicas
         let currentTrackIndex = 0;
+
+        // Inicia com a primeira música
+        audio.src = tracks[currentTrackIndex];
+        trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', ''); // Exibe nome da música
 
         // Função para tocar/pausar música de fundo
         playPauseButton.addEventListener("click", () => {
             if (audio.paused) {
                 audio.play();
-                playPauseButton.textContent = "⏸️";  // Ícone de pausa
+                playPauseButton.textContent = "⏸️";  // Atualiza o ícone para pausa
             } else {
                 audio.pause();
-                playPauseButton.textContent = "▶️";  // Ícone de play
+                playPauseButton.textContent = "▶️";  // Atualiza o ícone para play
             }
         });
 
@@ -200,18 +209,14 @@
             playPauseButton.textContent = "▶️";  // Volta para play
         });
 
-        // Inicia com a primeira música
-        audio.src = tracks[currentTrackIndex];
-        trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', '');  // Exibe o nome da música
-
         const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
         let titleIndex = 0;
-        
+
         function changeTitle() {
             let currentTitle = titles[titleIndex];
             let tempTitle = "";
             let index = 0;
-            
+
             function typeEffect() {
                 if (index < currentTitle.length) {
                     tempTitle += currentTitle[index];
@@ -225,13 +230,13 @@
                     }, 2000);
                 }
             }
-            
+
             document.title = "";
             typeEffect();
         }
-        
+
         changeTitle();
-        
+
         window.addEventListener("popstate", function (event) {
             window.location.href = "/";
         });
