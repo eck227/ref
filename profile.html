@@ -151,15 +151,12 @@
 
     <script>
         // Música que toca automaticamente quando a página é carregada
-        window.onload = function() {
-            let audioProfile = new Audio("media/comedinha.mp3");
-            audioProfile.loop = true;
-            audioProfile.play();
-            sessionStorage.setItem("profileMusicPlaying", "true");
+        let audioProfile = new Audio("media/comedinha.mp3");
+        audioProfile.loop = true;
+        audioProfile.play();
+        sessionStorage.setItem("profileMusicPlaying", "true");
 
-            window.history.pushState({}, "", "/");
-        };
-
+        // Música de fundo controlada pelo botão
         const audio = document.getElementById("audio");
         const playPauseButton = document.getElementById("play-pause");
         const prevButton = document.getElementById("prev");
@@ -175,8 +172,8 @@
                 audio.play();
                 playPauseButton.textContent = "⏸️";  // Ícone de pausa
             } else {
-                audio.play();
-                playPauseButton.textContent = "⏸️";  // Ícone de pausa
+                audio.pause();
+                playPauseButton.textContent = "▶️";  // Ícone de play
             }
         });
 
@@ -198,7 +195,7 @@
             trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', '');  // Exibe o nome da música
         });
 
-        // Quando a música terminar, atualiza o botão de play/pause
+        // Quando a música de fundo terminar, atualiza o botão de play/pause
         audio.addEventListener("ended", () => {
             playPauseButton.textContent = "▶️";  // Volta para play
         });
@@ -238,7 +235,6 @@
         window.addEventListener("popstate", function (event) {
             window.location.href = "/";
         });
-
     </script>
 </body>
 </html>
