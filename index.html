@@ -59,7 +59,7 @@
         audio.play();
         sessionStorage.setItem("musicInstance", "playing");
 
-        window.location.href = "profile";
+        window.location.href = "profile.html";
         }
     </script>
     <script>
@@ -105,14 +105,14 @@
             window.audioInstance.play().then(() => {
                 sessionStorage.setItem("musicPlaying", "true");
                 setTimeout(() => {
-                    window.location.href = "profile";
+                    window.location.href = "profile.html";
                 }, 500);
             }).catch(() => {
                 document.addEventListener("click", () => {
                     window.audioInstance.play();
                     sessionStorage.setItem("musicPlaying", "true");
                     setTimeout(() => {
-                        window.location.href = "profile";
+                        window.location.href = "profile.html";
                     }, 500);
                 }, { once: true });
             });
@@ -122,10 +122,11 @@
                 sessionStorage.setItem("keepMusic", "true");
             };
         } else {
-            window.location.href = "profile";
+            window.location.href = "profile.html";
         }
     }
 </script>
 
 </body>
 </html>
+
