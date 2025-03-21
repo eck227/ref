@@ -74,6 +74,30 @@
             height: 22px;
             background-size: cover;
         }
+
+        #music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #music-player button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #track-name {
+            color: white;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -114,6 +138,17 @@
             </div>
         </div>
     </div>
+
+    <div id="music-player">
+        <button id="prev">⏮️</button>
+        <button id="play-pause">▶️</button>
+        <button id="next">⏭️</button>
+        <span id="track-name">Carregando...</span>
+    </div>
+    <audio id="audio" loop>
+        <source src="media/comedinha.mp3" type="audio/mp3">
+    </audio>
+
     <script>
         window.onload = function() {
             if (sessionStorage.getItem("playMusic") === "true") {
@@ -124,7 +159,55 @@
             }
             window.history.pushState({}, "", "/");
         };
-    const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+
+        const audio = document.getElementById("audio");
+        const playPauseButton = document.getElementById("play-pause");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        const trackName = document.getElementById("track-name");
+
+        let tracks = ["media/comedinha.mp3", "media/another-song.mp3"];  // Adicione outras músicas aqui
+        let currentTrackIndex = 0;
+
+        // Função para tocar/pausar música
+        playPauseButton.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = "⏸️";  // Ícone de pausa
+            } else {
+                audio.pause();
+                playPauseButton.textContent = "▶️";  // Ícone de play
+            }
+        });
+
+        // Função para avançar para a próxima música
+        nextButton.addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            audio.src = tracks[currentTrackIndex];
+            audio.play();
+            playPauseButton.textContent = "⏸️";  // Atualiza para ícone de pausa
+            trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', '');  // Exibe o nome da música
+        });
+
+        // Função para voltar para a música anterior
+        prevButton.addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            audio.src = tracks[currentTrackIndex];
+            audio.play();
+            playPauseButton.textContent = "⏸️";  // Atualiza para ícone de pausa
+            trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', '');  // Exibe o nome da música
+        });
+
+        // Quando a música terminar, atualiza o botão de play/pause
+        audio.addEventListener("ended", () => {
+            playPauseButton.textContent = "▶️";  // Volta para play
+        });
+
+        // Inicia com a primeira música
+        audio.src = tracks[currentTrackIndex];
+        trackName.textContent = tracks[currentTrackIndex].split('/').pop().replace('.mp3', '');  // Exibe o nome da música
+
+        const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
         let titleIndex = 0;
         
         function changeTitle() {
@@ -151,21 +234,11 @@
         }
         
         changeTitle();
-    window.addEventListener("popstate", function (event) {
-        window.location.href = "/";
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".card").forEach(card => {
-            card.addEventListener("click", function () {
-                let url = this.getAttribute("data-url");
-                if (url) {
-                    window.open(url, "_blank");
-                }
-            });
+        
+        window.addEventListener("popstate", function (event) {
+            window.location.href = "/";
         });
-    });
-</script>
+
+    </script>
 </body>
 </html>
