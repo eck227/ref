@@ -122,6 +122,8 @@
                 audio.play();
                 sessionStorage.setItem("musicPlaying", "true");
             }
+            // Esconder "profile.html" da URL
+            window.history.pushState({}, "", "/");
         };
     </script>
 </body>
