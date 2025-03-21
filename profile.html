@@ -150,7 +150,10 @@
         }
         
         changeTitle();
-    </script>
+    window.addEventListener("popstate", function (event) {
+        window.location.href = "/";
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".card").forEach(card => {
