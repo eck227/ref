@@ -83,5 +83,15 @@
     
     changeTitle();
 </script>
+<p>Visitas nesta página: <span id="visit-count">0</span></p>
+
+<script>
+    if (localStorage.getItem("visits_index")) {
+        localStorage.setItem("visits_index", Number(localStorage.getItem("visits_index")) + 1);
+    } else {
+        localStorage.setItem("visits_index", 1);
+    }
+    document.getElementById("visit-count").innerText = localStorage.getItem("visits_index");
+</script>
 </body>
 </html>
