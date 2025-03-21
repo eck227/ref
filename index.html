@@ -47,86 +47,42 @@
 </head>
 <body>
     <div class="container">
-        <button id="revealButton" onclick="startMusicAndRedirect()">REF+</button>
+        <button id="revealButton" onclick="redirectToProfile()">REF+</button>
 
 <script>
-    function startMusicAndRedirect() {
+    function redirectToProfile() {
         sessionStorage.setItem("playMusic", "true");
-
-        // Criando um áudio global e armazenando no sessionStorage
-        let audio = new Audio("media/zoi.mp3");
-        audio.loop = true;
-        audio.play();
-        sessionStorage.setItem("musicInstance", "playing");
-
         window.location.href = "profile.html";
-        }
-    </script>
-    <script>
-        const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
-        let titleIndex = 0;
-        
-        function changeTitle() {
-            let currentTitle = titles[titleIndex];
-            let tempTitle = "";
-            let index = 0;
-            
-            function typeEffect() {
-                if (index < currentTitle.length) {
-                    tempTitle += currentTitle[index];
-                    document.title = tempTitle;
-                    index++;
-                    setTimeout(typeEffect, 150);
-                } else {
-                    setTimeout(() => {
-                        titleIndex = (titleIndex + 1) % titles.length;
-                        changeTitle();
-                    }, 2000);
-                }
-            }
-            
-            document.title = "";
-            typeEffect();
-        }
-        
-        changeTitle();
-    </script>
-<script>
-    function startMusicAndRedirect() {
-        sessionStorage.setItem("playMusic", "true");
-
-        // Se a música ainda não estiver tocando, cria e inicia a reprodução
-        if (!window.audioInstance) {
-            window.audioInstance = new Audio("media/zoi.mp3");
-            window.audioInstance.loop = true;
-            window.audioInstance.autoplay = true;
-            window.audioInstance.volume = 1.0;
-
-            window.audioInstance.play().then(() => {
-                sessionStorage.setItem("musicPlaying", "true");
-                setTimeout(() => {
-                    window.location.href = "profile.html";
-                }, 500);
-            }).catch(() => {
-                document.addEventListener("click", () => {
-                    window.audioInstance.play();
-                    sessionStorage.setItem("musicPlaying", "true");
-                    setTimeout(() => {
-                        window.location.href = "profile.html";
-                    }, 500);
-                }, { once: true });
-            });
-
-            // Mantém a instância global
-            window.onbeforeunload = function () {
-                sessionStorage.setItem("keepMusic", "true");
-            };
-        } else {
-            window.location.href = "profile.html";
-        }
     }
 </script>
-
+<script>
+    const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+    let titleIndex = 0;
+    
+    function changeTitle() {
+        let currentTitle = titles[titleIndex];
+        let tempTitle = "";
+        let index = 0;
+        
+        function typeEffect() {
+            if (index < currentTitle.length) {
+                tempTitle += currentTitle[index];
+                document.title = tempTitle;
+                index++;
+                setTimeout(typeEffect, 150);
+            } else {
+                setTimeout(() => {
+                    titleIndex = (titleIndex + 1) % titles.length;
+                    changeTitle();
+                }, 2000);
+            }
+        }
+        
+        document.title = "";
+        typeEffect();
+    }
+    
+    changeTitle();
+</script>
 </body>
 </html>
-
