@@ -150,13 +150,13 @@
     </audio>
 
     <script>
+        // Música que toca automaticamente quando a página é carregada
         window.onload = function() {
-            if (sessionStorage.getItem("playMusic") === "true") {
-                let audio = new Audio("media/comedinha.mp3");
-                audio.loop = true;
-                audio.play();
-                sessionStorage.setItem("musicPlaying", "true");
-            }
+            let audioProfile = new Audio("media/comedinha.mp3");
+            audioProfile.loop = true;
+            audioProfile.play();
+            sessionStorage.setItem("profileMusicPlaying", "true");
+
             window.history.pushState({}, "", "/");
         };
 
@@ -169,14 +169,14 @@
         let tracks = ["media/comedinha.mp3", "media/another-song.mp3"];  // Adicione outras músicas aqui
         let currentTrackIndex = 0;
 
-        // Função para tocar/pausar música
+        // Função para tocar/pausar música de fundo
         playPauseButton.addEventListener("click", () => {
             if (audio.paused) {
                 audio.play();
                 playPauseButton.textContent = "⏸️";  // Ícone de pausa
             } else {
-                audio.pause();
-                playPauseButton.textContent = "▶️";  // Ícone de play
+                audio.play();
+                playPauseButton.textContent = "⏸️";  // Ícone de pausa
             }
         });
 
