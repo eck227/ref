@@ -54,7 +54,7 @@
         sessionStorage.setItem("playMusic", "true");
 
         // Criando um áudio global e armazenando no sessionStorage
-        let audio = new Audio("media/zoii.mp3");
+        let audio = new Audio("media/estetica.mp3");
         audio.loop = true;
         audio.play();
         sessionStorage.setItem("musicInstance", "playing");
@@ -97,7 +97,7 @@
 
         // Se a música ainda não estiver tocando, cria e inicia a reprodução
         if (!window.audioInstance) {
-            window.audioInstance = new Audio("media/zoii.mp3");
+            window.audioInstance = new Audio("media/estetica.mp3");
             window.audioInstance.loop = true;
             window.audioInstance.autoplay = true;
             window.audioInstance.volume = 1.0;
