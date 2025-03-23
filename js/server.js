@@ -23,3 +23,20 @@ app.get("/api/discord-user/:id", async (req, res) => {
 });
 
 app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+
+app.get("/api/discord-user/:id", async (req, res) => {
+    const userId = req.params.id;
+    console.log(`Buscando usuário: ${userId}`); // Log no terminal
+
+    try {
+        const response = await axios.get(`https://discord.com/api/users/${userId}`, {
+            headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` }
+        });
+
+        console.log("Resposta da API:", response.data);
+        res.json(response.data);
+    } catch (error) {
+        console.error("Erro na requisição ao Discord:", error.response?.data || error.message);
+        res.status(500).json({ error: "Erro ao buscar usuário" });
+    }
+});
