@@ -110,70 +110,9 @@
             height: 22px;
             background-size: cover;
         }
-        
     </style>
 </head>
 <body>
-    <div class="parentt">
-        <div class="card" data-user-id="1304474005754876028">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" src="images/default.png">
-            </div>
-            <b class="username">Carregando...</b>
-            <b class="nickname">@Carregando...</b>
-            <div class="badges">
-                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-            </div>
-        </div>
-        <div class="card" data-user-id="216804292793860106">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" src="images/default.png">
-            </div>
-            <b class="username">Carregando...</b>
-            <b class="nickname">@Carregando...</b>
-            <div class="badges">
-                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-            </div>
-        </div>
-        <div class="card" data-user-id="1304476762041880667">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" src="images/default.png">
-            </div>
-            <b class="username">Carregando...</b>
-            <b class="nickname">@Carregando...</b>
-            <div class="badges">
-                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-            </div>
-        </div>
-    </div>
-    <script>
-        async function updateDiscordProfiles() {
-    document.querySelectorAll(".card[data-user-id]").forEach(async (card) => {
-        const userId = card.getAttribute("data-user-id");
-
-        try {
-            const response = await fetch(`http://localhost:3000/api/discord-user/${userId}`);
-            if (!response.ok) throw new Error("Erro ao buscar dados do Discord");
-            
-            const data = await response.json();
-
-            const avatarUrl = data.avatar
-                ? `https://cdn.discordapp.com/avatars/${userId}/${data.avatar}.png?size=2048`
-                : "images/default.png";
-
-            card.querySelector(".profile-img").src = avatarUrl;
-            card.querySelector(".username").innerText = data.username;
-            card.querySelector(".nickname").innerText = `@${data.username}`;
-        } catch (error) {
-            console.error("Erro ao atualizar perfil do Discord:", error);
-        }
-    });
-}
-updateDiscordProfiles();
-    </script>    
     <div class="music-container">
         <div class="music-info"> <span id="music-name">Nome da Música</span></div>
         <div class="progress-container" id="progress-container">
@@ -187,6 +126,43 @@ updateDiscordProfiles();
             Seu navegador não suporta áudio.
         </audio>
     </div>            
+    <div class="parentt">
+        <div class="card" onclick="window.location.href='https://discord.com/users/1304474005754876028'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="1304474005754876028" src="https://cdn.discordapp.com/avatars/1304474005754876028/8282da9efa7bb1a9ea6e3ae4279cd451.png?size=2048">
+            </div>
+            <b class="username">smoking only ice</b>
+            <b class="nickname" style="color: #ffffff65">fakecommitmentissues</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='https://discord.com/users/216804292793860106'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="216804292793860106" src="https://cdn.discordapp.com/avatars/216804292793860106/d4407194965df16dd8f2f698fa02c49a.png?size=2048">
+            </div>
+            <div class="divdiscord-username" data-user-id="216804292793860106">
+                <b class="username">eck</b>
+                <b class="nickname" style="color: #ffffff65">altamalandragem</b>
+                <div class="badges">
+                    <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                    <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='https://discord.com/users/1304476762041880667'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="1304476762041880667" src="https://cdn.discordapp.com/avatars/1304476762041880667/6daef60cb09704ff92093e1c72d40081.png?size=2048">
+            </div>
+            <b class="username">drugs</b>
+            <b class="nickname" style="color: #ffffff65">.sonotws</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
+    </div>
     <script>
         window.onload = function() {
             if (sessionStorage.getItem("playMusic") === "true") {
@@ -247,7 +223,7 @@ updateDiscordProfiles();
     const currentTimeEl = document.getElementById("current-time");
     const musicName = document.getElementById("music-name");
 
-    musicName.innerText = "05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO KK";
+    musicName.innerText = "05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO K";
 
     function updateMusicTime() {
         if (!isNaN(audio.duration)) {
@@ -275,7 +251,6 @@ updateDiscordProfiles();
             updateMusicTime();
         }
     });
-    
 </script>
 </body>
 </html>
