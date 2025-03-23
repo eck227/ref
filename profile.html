@@ -114,77 +114,66 @@
     </style>
 </head>
 <body>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Discord</title>
-    <style>
-        body { background-color: black; color: white; text-align: center; font-family: Arial, sans-serif; }
-        .card { border: 1px solid white; padding: 20px; margin: 20px; display: inline-block; width: 250px; text-align: center; }
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; }
-        .badges { margin-top: 10px; }
-        .badge { width: 30px; height: 30px; margin: 3px; }
-    </style>
-</head>
-<body>
-
-    <h1>Perfis do Discord</h1>
-
-    <!-- 3 Cards com IDs do Discord -->
-    <div class="card" data-user-id="123456789012345678" data-badges="admin,nitro">
-        <img class="profile-img" src="" alt="Avatar">
-        <h2 class="username">Carregando...</h2>
-        <p class="nickname">@nickname</p>
-        <div class="badges"></div>
+    <div class="parentt">
+        <div class="card" data-user-id="1304474005754876028">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" src="images/default.png">
+            </div>
+            <b class="username">Carregando...</b>
+            <b class="nickname">@Carregando...</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
+        <div class="card" data-user-id="216804292793860106">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" src="images/default.png">
+            </div>
+            <b class="username">Carregando...</b>
+            <b class="nickname">@Carregando...</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
+        <div class="card" data-user-id="1304476762041880667">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" src="images/default.png">
+            </div>
+            <b class="username">Carregando...</b>
+            <b class="nickname">@Carregando...</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
     </div>
-
-    <div class="card" data-user-id="987654321098765432" data-badges="streamer,vip">
-        <img class="profile-img" src="" alt="Avatar">
-        <h2 class="username">Carregando...</h2>
-        <p class="nickname">@nickname</p>
-        <div class="badges"></div>
-    </div>
-
-    <div class="card" data-user-id="112233445566778899" data-badges="membro">
-        <img class="profile-img" src="" alt="Avatar">
-        <h2 class="username">Carregando...</h2>
-        <p class="nickname">@nickname</p>
-        <div class="badges"></div>
-    </div>
-
     <script>
         async function updateDiscordProfiles() {
-            document.querySelectorAll(".card[data-user-id]").forEach(async (card) => {
-                const userId = card.getAttribute("data-user-id");
-                try {
-                    const response = await fetch(`http://localhost:3000/discord/${userId}`);
-                    if (!response.ok) throw new Error("Erro ao buscar dados do Discord");
+    document.querySelectorAll(".card[data-user-id]").forEach(async (card) => {
+        const userId = card.getAttribute("data-user-id");
 
-                    const data = await response.json();
+        try {
+            const response = await fetch(`http://localhost:3000/api/discord-user/${userId}`);
+            if (!response.ok) throw new Error("Erro ao buscar dados do Discord");
+            
+            const data = await response.json();
 
-                    // Atualiza imagem, nome e nickname no site
-                    card.querySelector(".profile-img").src = `https://cdn.discordapp.com/avatars/${userId}/${data.avatar}.png?size=2048`;
-                    card.querySelector(".username").innerText = data.username;
-                    card.querySelector(".nickname").innerText = `@${data.discriminator}`;
+            const avatarUrl = data.avatar
+                ? `https://cdn.discordapp.com/avatars/${userId}/${data.avatar}.png?size=2048`
+                : "images/default.png";
 
-                    // Adiciona badges manuais (imagens)
-                    const badgeContainer = card.querySelector(".badges");
-                    badgeContainer.innerHTML = "";
-                    const badges = card.getAttribute("data-badges").split(",");
-                    badges.forEach(badge => {
-                        const img = document.createElement("img");
-                        img.src = `badges/${badge}.png`; // Imagem da pasta badges
-                        img.classList.add("badge");
-                        badgeContainer.appendChild(img);
-                    });
-
-                } catch (error) {
-                    console.error("Erro ao atualizar perfil do Discord:", error);
-                }
-            });
+            card.querySelector(".profile-img").src = avatarUrl;
+            card.querySelector(".username").innerText = data.username;
+            card.querySelector(".nickname").innerText = `@${data.username}`;
+        } catch (error) {
+            console.error("Erro ao atualizar perfil do Discord:", error);
         }
-
-        updateDiscordProfiles();
-    </script>
+    });
+}
+updateDiscordProfiles();
+    </script>    
     <div class="music-container">
         <div class="music-info"> <span id="music-name">Nome da Música</span></div>
         <div class="progress-container" id="progress-container">
