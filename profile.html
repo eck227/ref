@@ -113,67 +113,8 @@
     </style>
 </head>
 <body>
-    <div class="music-container">
-        <div class="music-info"> <span id="music-name">Nome da Música</span></div>
-        <div class="progress-container" id="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
-        <div class="time-info">
-            <span id="current-time">0:00</span>
-        </div>
-        <audio id="music-player" autoplay loop>
-            <source src="media/comedinha.mp3" type="audio/mpeg">
-            Seu navegador não suporta áudio.
-        </audio>
-    </div>            
-    <div class="parentt">
-        <div class="card" onclick="window.location.href='https://discord.com/users/1304474005754876028'" style="cursor: pointer;">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" src="images/smoking.png">
-            </div>
-            <b class="username">smoking only ice</b>
-            <b class="nickname" style="color: #ffffff65">fakecommitmentissues</b>
-            <div class="badges">
-                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-            </div>
-        </div>
-        <div class="card" onclick="window.location.href='https://discord.com/users/216804292793860106'" style="cursor: pointer;">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" data-user-id="384424026027720704" src="https://cdn.discordapp.com/avatars/216804292793860106/7733c8de3963c53840bcd9a36dbc692b.png?size=2048">
-            </div>
-            <div class="divdiscord-username" data-user-id="384424026027720704">
-                <b class="username">eck</b>
-                <b class="nickname" style="color: #ffffff65">altamalandragem</b>
-                <div class="badges">
-                    <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                    <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card" onclick="window.location.href='https://discord.com/users/1304476762041880667'" style="cursor: pointer;">
-            <div class="divdiscord-avatar">
-                <img class="profile-img" src="images/drugs.png">
-            </div>
-            <b class="username">drugs</b>
-            <b class="nickname" style="color: #ffffff65">.sonotws</b>
-            <div class="badges">
-                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
-                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
-            </div>
-        </div>
-    </div>
     <script>
-        window.onload = function() {
-            if (sessionStorage.getItem("playMusic") === "true") {
-                let audio = new Audio("media/duplicado.mp3");
-                audio.loop = true;
-                audio.play();
-                sessionStorage.setItem("musicPlaying", "true");
-            }
-            window.history.pushState({}, "", "/");
-        };
-    const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+        const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
         let titleIndex = 0;
         
         function changeTitle() {
@@ -200,58 +141,93 @@
         }
         
         changeTitle();
-    window.addEventListener("popstate", function (event) {
-        window.location.href = "/";
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".card").forEach(card => {
-            card.addEventListener("click", function () {
-                let url = this.getAttribute("data-url");
-                if (url) {
-                    window.open(url, "_blank");
+    </script>
+    <div class="music-container">
+        <div class="music-info"> <span id="music-name">Nome da Música</span></div>
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-info">
+            <span id="current-time">0:00</span>
+        </div>
+        <audio id="music-player" autoplay loop>
+            <source src="media/comedinha.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>
+    <script>
+        const audio = document.getElementById("music-player");
+        const progressBar = document.getElementById("progress-bar");
+        const progressContainer = document.getElementById("progress-container");
+        const currentTimeEl = document.getElementById("current-time");
+        const musicName = document.getElementById("music-name");
+
+        musicName.innerText = "05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO K";
+
+        function updateMusicTime() {
+            if (!isNaN(audio.duration)) {
+                let currentMinutes = Math.floor(audio.currentTime / 60);
+                let currentSeconds = Math.floor(audio.currentTime % 60);
+                if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+
+                currentTimeEl.innerText = `${currentMinutes}:${currentSeconds}`;
+
+                let progressPercent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = progressPercent + "%";
+            }
+        }
+
+        audio.addEventListener("timeupdate", updateMusicTime);
+        progressContainer.addEventListener("click", (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            if (!isNaN(duration)) {
+                audio.currentTime = (clickX / width) * duration;
+                updateMusicTime();
+            }
+        });
+    </script>
+    <div class="parentt">
+        <div class="card" data-user-id="1304474005754876028"></div>
+        <div class="badges">
+            <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+            <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+        <div class="card" data-user-id="216804292793860106"></div>
+        <div class="badges">
+            <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+            <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+        <div class="card" data-user-id="1304476762041880667"></div>
+        <div class="badges">
+            <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+            <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+    </div>
+    <script>
+        async function updateDiscordProfiles() {
+            document.querySelectorAll(".card[data-user-id]").forEach(async (card) => {
+                const userId = card.getAttribute("data-user-id");
+                try {
+                    const response = await fetch(`https://discord.com/api/users/${userId}`, {
+                        headers: {
+                            "Authorization": `Bot MTM1MjQxNjk2MjcyMTg3ODE0OA.GjTLKs.aQWf9y6KpUdE17Id03fI6zSnX8bS_8d75FA3n8`
+                        }
+                    });
+                    if (!response.ok) throw new Error("Erro ao buscar dados do Discord");
+                    const data = await response.json();
+                    card.innerHTML = `
+                        <div class="divdiscord-avatar">
+                            <img class="profile-img" src="https://cdn.discordapp.com/avatars/${userId}/${data.avatar}.png?size=2048">
+                        </div>
+                        <b class="username">${data.username}</b>
+                        <b class="nickname">@${data.discriminator}</b>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error("Erro ao atualizar perfil do Discord:", error);
                 }
             });
-        });
-    });
-</script>
-<script>
-    const audio = document.getElementById("music-player");
-    const progressBar = document.getElementById("progress-bar");
-    const progressContainer = document.getElementById("progress-container");
-    const currentTimeEl = document.getElementById("current-time");
-    const musicName = document.getElementById("music-name");
-
-    musicName.innerText = "05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO KK";
-
-    function updateMusicTime() {
-        if (!isNaN(audio.duration)) {
-            let currentMinutes = Math.floor(audio.currentTime / 60);
-            let currentSeconds = Math.floor(audio.currentTime % 60);
-            if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
-
-            currentTimeEl.innerText = `${currentMinutes}:${currentSeconds}`;
-
-            let progressPercent = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = progressPercent + "%";
         }
-    }
-
-    // Atualiza tempo e barra de progresso
-    audio.addEventListener("timeupdate", updateMusicTime);
-
-    // Permite clicar na barra para avançar a música
-    progressContainer.addEventListener("click", (e) => {
-        const width = progressContainer.clientWidth;
-        const clickX = e.offsetX;
-        const duration = audio.duration;
-        if (!isNaN(duration)) {
-            audio.currentTime = (clickX / width) * duration;
-            updateMusicTime();
-        }
-    });
-</script>
+        updateDiscordProfiles();
+    </script>
 </body>
 </html>
-
