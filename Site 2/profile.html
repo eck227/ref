@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <style>
+.music-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    opacity: 0.3;
+    text-align: center;
+}
+.music-info {
+    font-size: 8px;
+    margin-bottom: 3px;
+}
+.progress-container {
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: white;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+.time-info {
+    display: flex;
+    justify-content: center; /* Agora só o tempo atual fica no meio */
+    font-size: 7px;
+    margin-top: 2px;
+}
+    </style>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="images/money.png" type="images/x-icon"> <!-- Favicon adicionado -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .parentt {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background: black;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            height: 250px;
+            animation: pulsate 2s infinite;
+        }
+        @keyframes pulsate {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.05); }
+            50% { box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.05); }
+        }
+        .profile-img {
+            width: 98px;
+            height: 98px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 35px;
+        }
+        .username {
+            display: block;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-top: 15px;
+        }
+        .nickname {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: -5px;
+        }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .badge {
+            width: 22px;
+            height: 22px;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-container">
+        <div class="music-info"> <span id="music-name">Nome da Música</span></div>
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-info">
+            <span id="current-time">0:00</span>
+        </div>
+        <audio id="music-player" autoplay loop>
+            <source src="media/comedinha.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    </div>            
+    <div class="parentt">
+        <div class="card" onclick="window.location.href='https://discord.com/users/1304474005754876028'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="1304474005754876028" src="https://cdn.discordapp.com/avatars/1304474005754876028/8282da9efa7bb1a9ea6e3ae4279cd451.png?size=2048">
+            </div>
+            <b class="username">smoking only ice</b>
+            <b class="nickname" style="color: #ffffff65">fakecommitmentissues</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/tranquilo.png');"></div>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='https://discord.com/users/216804292793860106'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="216804292793860106" src="https://cdn.discordapp.com/avatars/216804292793860106/e2fd17ab7c5ae5cb7318621d942b1b61.webp?size=1024">
+            </div>
+            <div class="divdiscord-username" data-user-id="216804292793860106">
+                <b class="username">eck</b>
+                <b class="nickname" style="color: #ffffff65">sellingice</b>
+                <div class="badges">
+                    <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                    <div class="badge" style="background-image: url('images/coringa.webp');"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card" onclick="window.location.href='https://discord.com/users/1304476762041880667'" style="cursor: pointer;">
+            <div class="divdiscord-avatar">
+                <img class="profile-img" data-user-id="1304476762041880667" src="https://cdn.discordapp.com/avatars/1304476762041880667/6daef60cb09704ff92093e1c72d40081.png?size=2048">
+            </div>
+            <b class="username">drugs</b>
+            <b class="nickname" style="color: #ffffff65">.sonotws</b>
+            <div class="badges">
+                <div class="badge" style="background-image: url('images/nitro.gif');"></div>
+                <div class="badge" style="background-image: url('images/Cute_sex.png');"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            if (sessionStorage.getItem("playMusic") === "true") {
+                let audio = new Audio("media/duplicado.mp3");
+                audio.loop = true;
+                audio.play();
+                sessionStorage.setItem("musicPlaying", "true");
+            }
+            window.history.pushState({}, "", "/");
+        };
+    const titles = ["NÓS", "FICOU", "ENJOADÃO", "DISCORD.GG/REF"];
+        let titleIndex = 0;
+        
+        function changeTitle() {
+            let currentTitle = titles[titleIndex];
+            let tempTitle = "";
+            let index = 0;
+            
+            function typeEffect() {
+                if (index < currentTitle.length) {
+                    tempTitle += currentTitle[index];
+                    document.title = tempTitle;
+                    index++;
+                    setTimeout(typeEffect, 150);
+                } else {
+                    setTimeout(() => {
+                        titleIndex = (titleIndex + 1) % titles.length;
+                        changeTitle();
+                    }, 2000);
+                }
+            }
+            
+            document.title = "";
+            typeEffect();
+        }
+        
+        changeTitle();
+    window.addEventListener("popstate", function (event) {
+        window.location.href = "/";
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".card").forEach(card => {
+            card.addEventListener("click", function () {
+                let url = this.getAttribute("data-url");
+                if (url) {
+                    window.open(url, "_blank");
+                }
+            });
+        });
+    });
+</script>
+<script>
+    const audio = document.getElementById("music-player");
+    const progressBar = document.getElementById("progress-bar");
+    const progressContainer = document.getElementById("progress-container");
+    const currentTimeEl = document.getElementById("current-time");
+    const musicName = document.getElementById("music-name");
+
+    musicName.innerText = "05 - COMEDINHA FICOU BRAVO - DJ JAPA NK, MC NEGÃO ORIGINAL & MC MENO K";
+
+    function updateMusicTime() {
+        if (!isNaN(audio.duration)) {
+            let currentMinutes = Math.floor(audio.currentTime / 60);
+            let currentSeconds = Math.floor(audio.currentTime % 60);
+            if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+
+            currentTimeEl.innerText = `${currentMinutes}:${currentSeconds}`;
+
+            let progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progressPercent + "%";
+        }
+    }
+
+    // Atualiza tempo e barra de progresso
+    audio.addEventListener("timeupdate", updateMusicTime);
+
+    // Permite clicar na barra para avançar a música
+    progressContainer.addEventListener("click", (e) => {
+        const width = progressContainer.clientWidth;
+        const clickX = e.offsetX;
+        const duration = audio.duration;
+        if (!isNaN(duration)) {
+            audio.currentTime = (clickX / width) * duration;
+            updateMusicTime();
+        }
+    });
+</script>
+</body>
+</html>
+
